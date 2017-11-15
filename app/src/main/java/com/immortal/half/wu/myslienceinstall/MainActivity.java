@@ -2,7 +2,6 @@ package com.immortal.half.wu.myslienceinstall;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,8 +16,6 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity {
 
     private File apkFile;
-    private static final String TAG = "myslienceinstall";
-    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FileUtil2.instance(this);
         apkFile = new File(FileUtil2.getAppFilePath()+File.separator+"app-debug.apk");
-        textView = findViewById(R.id.textView);
+        TextView textView = findViewById(R.id.textView);
         textView.setText(apkFile.getAbsolutePath() + "_exists?_" + apkFile.exists());
-        Log.i(TAG, "=====================================onCreate: "+apkFile.getAbsolutePath()+ "_exists?_" + apkFile.exists());
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
