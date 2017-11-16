@@ -10,7 +10,7 @@ import android.content.pm.PackageManager;
 
 public interface InstallApkInterface<ApkInfo>
 {
-    void installApk(ApkInfo paramApkInfo, PackageManager paramPackageManager, OperationApkCallBack paramOperationApkCallBack);
+    void installApk(ApkInfo paramApkInfo, PackageManager paramPackageManager, OperationApkCallBack<ApkInfo> paramOperationApkCallBack);
 
-    void slienceInstallApk(ApkInfo paramApkInfo, PackageManager paramPackageManager, OperationApkCallBack paramOperationApkCallBack);
+    void slienceInstallApk(ApkInfo paramApkInfo, PackageManager paramPackageManager, OperationApkCallBack<ApkInfo> paramOperationApkCallBack);
 }

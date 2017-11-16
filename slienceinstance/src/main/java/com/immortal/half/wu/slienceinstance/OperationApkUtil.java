@@ -20,13 +20,13 @@ public class OperationApkUtil {
         Loger.d("OperationApkUtil() : 初始化");
     }
 
-    public static void installApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack callBack)
+    public static void installApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack<SimpleApkInfo> callBack)
     {
         Loger.d("installApk():\t" + simpleApkInfo.toString());
         getInstallApkInterface().installApk(simpleApkInfo, packageManager, callBack);
     }
 
-    public static void slienceInstallApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack callBack)
+    public static void slienceInstallApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack<SimpleApkInfo> callBack)
     {
         Loger.d("slienceInstallApk():\t" + simpleApkInfo.toString());
         getInstallApkInterface().slienceInstallApk(simpleApkInfo, packageManager, callBack);
@@ -53,4 +53,5 @@ public class OperationApkUtil {
     {
         return OperationApkManager.getInstance();
     }
+
 }

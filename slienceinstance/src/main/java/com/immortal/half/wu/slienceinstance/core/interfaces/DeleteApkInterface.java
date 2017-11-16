@@ -10,7 +10,7 @@ import android.content.pm.PackageManager;
 
 public interface DeleteApkInterface<ApkInfo>
 {
-    void deleteApk(ApkInfo paramApkInfo, PackageManager paramPackageManager, OperationApkCallBack paramOperationApkCallBack);
+    void deleteApk(ApkInfo paramApkInfo, PackageManager paramPackageManager, OperationApkCallBack<ApkInfo> paramOperationApkCallBack);
 
-    void slienceDeleteApk(ApkInfo paramApkInfo, PackageManager paramPackageManager, OperationApkCallBack paramOperationApkCallBack);
+    void slienceDeleteApk(ApkInfo paramApkInfo, PackageManager paramPackageManager, OperationApkCallBack<ApkInfo> paramOperationApkCallBack);
 }

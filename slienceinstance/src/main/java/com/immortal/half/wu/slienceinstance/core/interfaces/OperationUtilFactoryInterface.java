@@ -9,6 +9,6 @@ package com.immortal.half.wu.slienceinstance.core.interfaces;
 public interface OperationUtilFactoryInterface<T> {
 
     DeleteApkInterface<T> createDeleteApkUtil(T apkInfo);
-    InstallApkInterface<T> createinstallApkUtil(T apkInfo);
+    InstallApkInterface<T> createInstallApkUtil(T apkInfo);
 
 }

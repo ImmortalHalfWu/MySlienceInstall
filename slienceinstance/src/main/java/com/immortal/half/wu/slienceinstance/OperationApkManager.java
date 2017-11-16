@@ -18,16 +18,12 @@ import com.immortal.half.wu.slienceinstance.models.SimpleApkInfo;
 
 class OperationApkManager implements DeleteApkInterface<SimpleApkInfo>, InstallApkInterface<SimpleApkInfo>
 {
-//    private DeleteApkInterface<SimpleApkInfo> deleteApkInterface;
-//    private InstallApkInterface<SimpleApkInfo> installApkInterface;
     private OperationUtilFactoryInterface<SimpleApkInfo> operationUtilFactoryInterface;
     private static OperationApkManager operationApkManager;
 
     private OperationApkManager()
     {
         operationUtilFactoryInterface = OperationUtilFactory.instance();
-//        this.deleteApkInterface = DeleteApkUtil.instance();
-//        this.installApkInterface = InstallApkUtil.instance();
     }
 
     public static OperationApkManager getInstance()
@@ -39,27 +35,23 @@ class OperationApkManager implements DeleteApkInterface<SimpleApkInfo>, InstallA
     public void deleteApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack callBack)
     {
         operationUtilFactoryInterface.createDeleteApkUtil(simpleApkInfo).deleteApk(simpleApkInfo, packageManager, callBack);
-//        this.deleteApkInterface.deleteApk(simpleApkInfo, packageManager, callBack);
     }
 
     @Override
     public void slienceDeleteApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack callBack)
     {
         operationUtilFactoryInterface.createDeleteApkUtil(simpleApkInfo).slienceDeleteApk(simpleApkInfo, packageManager, callBack);
-//        this.deleteApkInterface.slienceDeleteApk(simpleApkInfo, packageManager, callBack);
     }
 
     @Override
-    public void installApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack callBack)
+    public void installApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack<SimpleApkInfo> callBack)
     {
-        operationUtilFactoryInterface.createinstallApkUtil(simpleApkInfo).installApk(simpleApkInfo, packageManager, callBack);
-//        this.installApkInterface.installApk(simpleApkInfo, packageManager, callBack);
+        operationUtilFactoryInterface.createInstallApkUtil(simpleApkInfo).installApk(simpleApkInfo, packageManager, callBack);
     }
 
     @Override
-    public void slienceInstallApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack callBack)
+    public void slienceInstallApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack<SimpleApkInfo> callBack)
     {
-        operationUtilFactoryInterface.createinstallApkUtil(simpleApkInfo).installApk(simpleApkInfo, packageManager, callBack);
-//        this.installApkInterface.installApk(simpleApkInfo, packageManager, callBack);
+        operationUtilFactoryInterface.createInstallApkUtil(simpleApkInfo).installApk(simpleApkInfo, packageManager, callBack);
     }
 }

@@ -5,7 +5,7 @@ package com.immortal.half.wu.slienceinstance.core.interfaces;
  * Created : immortalHalfWu
  * Time : 2017/11/15  9:55
  */
-public interface OperationApkCallBack
+public interface OperationApkCallBack<T>
 {
-    void callBack(String paramString, int paramInt);
+    void callBack(T paramString, int paramInt);
 }

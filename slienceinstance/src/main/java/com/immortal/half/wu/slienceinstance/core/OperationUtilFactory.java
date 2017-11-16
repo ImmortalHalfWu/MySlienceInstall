@@ -34,7 +34,7 @@ public class OperationUtilFactory implements OperationUtilFactoryInterface<Simpl
     }
 
     @Override
-    public InstallApkInterface<SimpleApkInfo> createinstallApkUtil(SimpleApkInfo apkInfo) {
+    public InstallApkInterface<SimpleApkInfo> createInstallApkUtil(SimpleApkInfo apkInfo) {
         switch (apkInfo.getModelEnum()){
             case MODEL_PM:
                 return InstallApkUtil.instance();

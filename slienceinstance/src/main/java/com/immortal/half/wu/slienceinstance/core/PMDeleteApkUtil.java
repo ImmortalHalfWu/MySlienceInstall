@@ -23,23 +23,23 @@ class PMDeleteApkUtil implements DeleteApkInterface<SimpleApkInfo> {
     }
 
     @Override
-    public void deleteApk(SimpleApkInfo paramApkInfo, PackageManager paramPackageManager, OperationApkCallBack paramOperationApkCallBack) {
+    public void deleteApk(SimpleApkInfo paramApkInfo, PackageManager paramPackageManager, OperationApkCallBack<SimpleApkInfo> paramOperationApkCallBack) {
         slienceDeleteApk(paramApkInfo,paramPackageManager,paramOperationApkCallBack);
     }
 
     @Override
-    public void slienceDeleteApk(final SimpleApkInfo paramApkInfo, PackageManager paramPackageManager, final OperationApkCallBack paramOperationApkCallBack) {
+    public void slienceDeleteApk(final SimpleApkInfo paramApkInfo, PackageManager paramPackageManager, final OperationApkCallBack<SimpleApkInfo> paramOperationApkCallBack) {
         PMThreadScheduling.instance().sendPMString(
                 PM_STRING + paramApkInfo.getPackageName(),
                 new PMThreadScheduling.PmSendeCallBack() {
                     @Override
                     public void suc(@NonNull String pmString) {
-                        paramOperationApkCallBack.callBack(paramApkInfo.getPackageName(),1);
+                        paramOperationApkCallBack.callBack(paramApkInfo,1);
                     }
 
                     @Override
                     public void erro(@NonNull Exception e) {
-                        paramOperationApkCallBack.callBack(paramApkInfo.getPackageName(),-1);
+                        paramOperationApkCallBack.callBack(paramApkInfo,-1);
                     }
                 }
         );

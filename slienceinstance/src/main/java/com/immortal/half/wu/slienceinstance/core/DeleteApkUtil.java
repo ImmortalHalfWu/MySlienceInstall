@@ -25,24 +25,26 @@ class DeleteApkUtil implements DeleteApkInterface<SimpleApkInfo>
         return deleteApkUtil == null ? (deleteApkUtil = new DeleteApkUtil()) : deleteApkUtil;
     }
 
-    public void deleteApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack callBack)
+    @Override
+    public void deleteApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack<SimpleApkInfo> callBack)
     {
         slienceDeleteApk(simpleApkInfo, packageManager, callBack);
     }
 
-    public void slienceDeleteApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack callBack)
+    @Override
+    public void slienceDeleteApk(SimpleApkInfo simpleApkInfo, PackageManager packageManager, OperationApkCallBack<SimpleApkInfo> callBack)
     {
         packageManager.deletePackage(simpleApkInfo
-                .getPackageName(), new InstallObserver(callBack), 0);
+                .getPackageName(), new InstallObserver<>(simpleApkInfo,callBack), 0);
     }
 
-    private static class InstallObserver
-            extends IPackageDeleteObserver.Stub
-    {
-        private OperationApkCallBack callBack;
+    private static class InstallObserver<ApkInfo> extends IPackageDeleteObserver.Stub {
+        private OperationApkCallBack<ApkInfo> callBack;
+        private ApkInfo apkInfo;
 
-        public InstallObserver(@NonNull OperationApkCallBack callBack)
+        InstallObserver(@NonNull ApkInfo apkInfo, @NonNull OperationApkCallBack<ApkInfo> callBack)
         {
+            this.apkInfo = apkInfo;
             this.callBack = callBack;
         }
 
@@ -51,7 +53,7 @@ class DeleteApkUtil implements DeleteApkInterface<SimpleApkInfo>
                 throws RemoteException
         {
             Loger.d(InstallObserver.class.getName() + "\t" + "packageName : " + packageName + "\t" + "returnCode : " + returnCode);
-            this.callBack.callBack(packageName, returnCode);
+            this.callBack.callBack(apkInfo, returnCode);
             this.callBack = null;
         }
     }
